@@ -4,7 +4,17 @@
     "path": "cz-template",
     "cz-template": {
       "questions": [
-
+        {
+          "type": "input",
+          "name": "issues",
+          "message": "Add issue references (e.g. 'fix #123', 're #123'.):\n"
+        }
+      ],
+      "scopes": [
+        {
+          "name": "test",
+          "value": "test"
+        }
       ],
       "types": [
         {
@@ -13,8 +23,16 @@
           "name": "feat",
           "emoji": "🎉",
           "code": ":tada:"
+        },
+        {
+          "description": "Add type test",
+          "title": "Test add type",
+          "name": "testAddType",
+          "emoji": "🎉",
+          "code": ":tada:"
         }
-      ]
+      ],
+      "formula": "${title} ${emoji} ${scope}: ${subject}"
     }
   }
 }

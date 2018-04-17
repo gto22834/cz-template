@@ -78,24 +78,27 @@ const types = [
   },
 ]
 module.exports = (config) => {
-  var list = []
+  var list = config
   if (config) {
     if (typeof config === 'string') {
       list = require(config)
     }
 
-    // Merge
-    types.map(item => {
-      for (var i = 0; i < list.length; i++) {
-        if (item.name === list[i]) {
-          item = list[i]
-        } else {
-          types.push(list[i])
+    // Merge type from config
+    list.map(item => {
+      for (var i = 0; i < types.length; i++) {
+        if (item.name === types[i].name) {
+          types[i] = item
+          return
         }
       }
+      types.push(item)
     })
-
-    return types
+    return types.map(choice => ({
+      name: `${choice.name}${choice.emoji}: ${choice.description}`,
+      value: choice,
+      code: choice.code,
+    }))
   }
   return null
 }

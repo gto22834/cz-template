@@ -1,10 +1,12 @@
 'use strict'
-var fs = require('fs')
-var path = require('path')
+const fs = require('fs')
+const path = require('path')
+
+const truncate = require('cli-truncate')
 var wrap = require('word-wrap')
 // var map = require('lodash.map')
-var longest = require('longest')
-var rightPad = require('right-pad')
+// var longest = require('longest')
+// var rightPad = require('right-pad')
 var Types = require('./Types.js')
 var Questions = require('./Questions.js')
 
@@ -19,9 +21,9 @@ function homeDir (subDir) {
   return (subDir) ? path.join(baseDir, subDir) : baseDir
 }
 
-function loadConfig () {
+function loadConfig (path) {
   var promise = new Promise((resolve, reject) => {
-    fs.readFile(homeDir('.czrc'), 'utf8', (err, content) => {
+    fs.readFile(path, 'utf8', (err, content) => {
       if (err) reject(err)
       try {
         const czrc = JSON.parse(content) || null
@@ -36,58 +38,75 @@ function loadConfig () {
       return res.config[path]
     })
     .catch(e => {
+      // TODO: retry homeDir('.czrc')
       console.error(e)
     })
   return promise
 }
 
-function scope (answers) {
-  var maxLineWidth = 100
+function format (answers, formula) {
   var wrapOptions = {
     trim: true,
     newline: '\n',
     indent: '',
-    width: maxLineWidth,
+    width: 100,
   }
 
-  // parentheses are only needed when a scope is present
-  var scope = answers.scope.trim()
-  scope = scope ? '(' + answers.scope.trim() + ')' : ''
-
   // Hard limit this line
-  var head = (answers.type + scope + ': ' + answers.subject.trim()).slice(0, maxLineWidth)
+  let target = formula.match(/\${(.+?)}/g)
+  target.map(string => {
+    const key = string.match(/\${(.+?)}/)[1]
+    switch (key) {
+      case 'emoji':
+      case 'title':
+      case 'name':
+        const value = answers.type[key]
+        formula = formula.replace(string, value)
+        break
+      case 'scope':
+        // parentheses are only needed when a scope is present
+        var scope = answers.scope.trim()
+        scope = scope ? '(' + answers.scope.trim() + ')' : ''
+        formula = formula.replace(string, scope)
+        break
+      case 'subject':
+      case 'body':
+        formula = formula.replace(string, answers[key])
+        break
+      default:
+        console.error('error key with ' + string)
+    }
+  })
+
+  const head = truncate(formula.trim(), 100)
 
   // Wrap these lines at 100 characters
-  var body = wrap(answers.body, wrapOptions)
+  const body = wrap(answers.body, wrapOptions)
 
   // Apply breaking change prefix, removing it if already present
-  var breaking = answers.breaking ? answers.breaking.trim() : ''
-  breaking = breaking ? 'BREAKING CHANGE: ' + breaking.replace(/^BREAKING CHANGE: /, '') : ''
-  breaking = wrap(breaking, wrapOptions)
+  // var breaking = answers.breaking ? answers.breaking.trim() : ''
+  // breaking = breaking ? 'BREAKING CHANGE: ' + breaking.replace(/^BREAKING CHANGE: /, '') : ''
+  // breaking = wrap(breaking, wrapOptions)
 
   var issues = answers.issues ? wrap(answers.issues, wrapOptions) : ''
-
-  var footer = filter([ breaking, issues ]).join('\n\n')
-
+  var footer = filter([issues]).join('\n\n')
   return head + '\n\n' + body + '\n\n' + footer
 }
 
 module.exports = () => {
   return {
     prompter: function (cz, commit) {
-      loadConfig()
-        .then(config => {
-          var types = Types(config.types)
-          console.error(types)
-          return {
-            questions: Questions(types),
-            scope: config.scope,
-          }
-        })
+      var file = path.resolve('.czrc')
+      let config = {}
+      loadConfig(file)
         .then(res => {
-          console.error(res)
-          return res
+          var types = Types(res.types)
+          config = res
+          return Questions(config.questions, types)
         })
+        .then(cz.prompt)
+        .then(res => format(res, config.formula))
+        .then(commit)
         // .then(Questions)
         // .then(cz.prompt)
         // .then(scope)

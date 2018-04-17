@@ -33,6 +33,7 @@
     "eslint-plugin-standard": "^3.0.1"
   },
   "dependencies": {
+    "cli-truncate": "^1.1.0",
     "longest": "^2.0.1",
     "right-pad": "^1.0.1",
     "word-wrap": "^1.2.3"
