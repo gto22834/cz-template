@@ -10,12 +10,13 @@ var filter = function (array) {
 }
 
 module.exports = function (options) {
-  var length = longest(Object.keys(options)).length + 1
+  var list = options.types
+  var length = longest(Object.keys(list)).length + 1
   var choices = []
-  for (var key in options) {
-    if (options.hasOwnProperty(key)) {
+  for (var key in list) {
+    if (list.hasOwnProperty(key)) {
       choices.push({
-        name: rightPad(key + ':', length) + ' ' + options[key].type.description,
+        name: rightPad(key + ':', length) + ' ' + list[key].description,
         value: key,
       })
     }
