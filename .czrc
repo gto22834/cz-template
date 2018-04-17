@@ -1,0 +1,20 @@
+{
+  "path": "cz-template",
+  "config": {
+    "path": "cz-template",
+    "cz-template": {
+      "questions": [
+
+      ],
+      "types": [
+        {
+          "description": "Add new feature",
+          "title": "Features",
+          "name": "feat",
+          "emoji": "🎉",
+          "code": ":tada:"
+        }
+      ]
+    }
+  }
+}
