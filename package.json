@@ -1,0 +1,40 @@
+{
+  "name": "cz-template",
+  "version": "1.0.0",
+  "description": "The customized Commitizen template to formulate commit message.",
+  "main": "index.js",
+  "scripts": {
+    "commit": "git-cz",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "version": "git add .",
+    "postversion": "git push && git push --tags && rm -rf build/temp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gto22834/cz-template.git"
+  },
+  "author": "Simon Ku <gto22834@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gto22834/cz-template/issues"
+  },
+  "homepage": "https://github.com/gto22834/cz-template#readme",
+  "config": {
+    "commitizen": {
+      "path": "./index.js"
+    }
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.0.1"
+  },
+  "dependencies": {
+    "longest": "^2.0.1",
+    "right-pad": "^1.0.1",
+    "word-wrap": "^1.2.3"
+  }
+}
