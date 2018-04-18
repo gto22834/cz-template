@@ -13,6 +13,7 @@ var filter = function (array) {
   })
 }
 
+// TODO: Add home dir finder
 // function homeDir (subDir) {
 //   var baseDir = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
 //   return (subDir) ? path.join(baseDir, subDir) : baseDir
