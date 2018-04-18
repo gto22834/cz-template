@@ -1,6 +1,7 @@
 'use strict'
 
 module.exports = (config, types) => {
+  // Default questions
   var questions = [
     {
       type: 'list',
