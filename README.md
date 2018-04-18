@@ -7,7 +7,7 @@ This repository is inspired by cz-emoji
 
 1. Install package
 ```sh
-$ npm i -g https://github.com/gto22834/cz-template.git
+$ npm i -g cz-template
 ```
 
 2. create .czrc in your project folder
