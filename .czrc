@@ -1,3 +1,15 @@
 {
-  "path": "cz-template"
+  "path": "cz-conventional-changelog",
+  "config": {
+    "cz-template": {
+      "questions": [
+        {
+          "type": "input",
+          "name": "issues",
+          "message": "Add issue references (e.g. 'fix #123', 're #123'.):\n"
+        }
+      ],
+      "formula": "${title} ${emoji} ${scope}: ${subject}"
+    }
+  }
 }
