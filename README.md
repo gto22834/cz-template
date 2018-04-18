@@ -16,6 +16,20 @@ $ npm i -g https://github.com/gto22834/cz-template.git
 
 > The ./czrc look like...
 
+1. You can add `quesstions`, `scopes`, `types` to extend default setting.
+2. Change `formula` with es6 strings template to format commit message
+  [reference](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#type)
+  Support:
+    - ${title}: This will fill commit type e.q. feat, fix, ...
+    - ${emoji}: Fill emoji icon
+    - ${subject}: Fill subject of commit message
+    - ${description}: Fill description about commit message
+    - ${scope}: Fill scope name
+  e.q. ${title} ${emoji} ${scope}: ${subject => fix 🎉 (common): Fixed example
+
+> NOTE: Have a issue with `scopes`
+
+
 ```json
 {
   "path": "cz-template",
@@ -56,19 +70,12 @@ $ npm i -g https://github.com/gto22834/cz-template.git
 }
 ```
 
-> Add questions
+## TODO
 
-```json
-...
-  "config": {
-    "cz-template": {
-      "questions": [
-        {
-          "type": "input",
-          "name": "{String} The name of question.",
-          "message": "{String}"
-        }
-      ]
-    }
-  }
-```
+- [ ] Fixed scopes options
+- [ ] Add loader to find .czrc ([reference](https://github.com/commitizen/cz-cli/blob/master/src/configLoader/loader.js#L20))
+- [ ] Pull request cz-ci to support `js` format
+
+## Reference:
+[cz-emoji](https://github.com/up9cloud/cz-emoji)
+[cz-ci](https://github.com/commitizen/cz-cli)
