@@ -27,6 +27,6 @@ module.exports = (config, types) => {
   if (config.questions && config.questions.length) {
     console.error('Add questions')
   }
-
+  console.error(questions)
   return questions
 }
