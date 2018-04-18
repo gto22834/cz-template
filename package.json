@@ -1,6 +1,6 @@
 {
   "name": "cz-template",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "The customized Commitizen template to formulate commit message.",
   "main": "index.js",
   "scripts": {
