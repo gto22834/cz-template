@@ -82,6 +82,8 @@ module.exports = (config) => {
   if (config) {
     if (typeof config === 'string') {
       list = require(config)
+    } else {
+      list = []
     }
 
     // Merge type from config
@@ -94,6 +96,7 @@ module.exports = (config) => {
       }
       types.push(item)
     })
+    console.error(types)
     return types.map(choice => ({
       name: `${choice.name}${choice.emoji}: ${choice.description}`,
       value: choice,

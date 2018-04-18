@@ -4,11 +4,8 @@ const path = require('path')
 
 const truncate = require('cli-truncate')
 var wrap = require('word-wrap')
-// var map = require('lodash.map')
-// var longest = require('longest')
-// var rightPad = require('right-pad')
-var Types = require('./Types.js')
-var Questions = require('./Questions.js')
+const Types = require('./Types.js')
+const Questions = require('./Questions.js')
 
 var filter = function (array) {
   return array.filter(function (x) {
@@ -16,10 +13,10 @@ var filter = function (array) {
   })
 }
 
-function homeDir (subDir) {
-  var baseDir = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
-  return (subDir) ? path.join(baseDir, subDir) : baseDir
-}
+// function homeDir (subDir) {
+//   var baseDir = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
+//   return (subDir) ? path.join(baseDir, subDir) : baseDir
+// }
 
 function loadConfig (path) {
   var promise = new Promise((resolve, reject) => {
@@ -34,8 +31,10 @@ function loadConfig (path) {
     })
   })
     .then(res => {
-      var path = res.config.path
-      return res.config[path]
+      if (res.config && res.config['cz-template']) {
+        return res.config['cz-template']
+      }
+      return {}
     })
     .catch(e => {
       // TODO: retry homeDir('.czrc')

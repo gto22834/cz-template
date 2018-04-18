@@ -1,6 +1,6 @@
 {
   "name": "cz-template",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "The customized Commitizen template to formulate commit message.",
   "main": "index.js",
   "scripts": {
@@ -34,8 +34,6 @@
   },
   "dependencies": {
     "cli-truncate": "^1.1.0",
-    "longest": "^2.0.1",
-    "right-pad": "^1.0.1",
     "word-wrap": "^1.2.3"
   }
 }
