@@ -16,7 +16,7 @@ $ npm i -g cz-template
 
 > The ./czrc look like...
 
-1. You can add `quesstions`, `scopes`, `types` to extend default setting.
+1. You can add `questions`, `scopes`, `types` to extend default setting.
 2. Change `formula` with es6 strings template to format commit message
   [reference](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#type)
   Support:
