@@ -46,7 +46,7 @@ function loadConfig (path) {
 
 function format (answers, formulaString) {
   // TODO: Use template engine
-  let formula = formulaString || '${title} ${emoji} ${scope}: ${subject}'
+  let formula = formulaString || '${name}${scope}: ${subject}'
   let target = formula.match(/\${(.+?)}/g)
   target.map(string => {
     const key = string.match(/\${(.+?)}/)[1]
