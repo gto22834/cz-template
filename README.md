@@ -7,6 +7,7 @@ This repository is inspired by cz-emoji
 
 1. Install package
 ```sh
+$ npm i -g commitizen
 $ npm i -g cz-template
 ```
 
