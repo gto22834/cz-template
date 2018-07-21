@@ -6,6 +6,7 @@
   "scripts": {
     "commit": "git-cz",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "public": "npm version patch && npm publish",
     "version": "git add .",
     "postversion": "git push && git push --tags && rm -rf build/temp"
   },
