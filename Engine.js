@@ -96,14 +96,15 @@ function format (answers, formulaString) {
 }
 
 module.exports = () => {  
+  var file = path.join(process.cwd(), '.czrc')
+  console.error(file);
   return {
     prompter: function (cz, commit) {
-      var file = path.join(process.cwd(), '.czrc')
-      console.error(file);
-      
       let config = {}
       loadConfig(file)
         .then(res => {
+          console.error(res);
+          
           var types = Types(res.types)
           config = res
           return Questions(config, types)

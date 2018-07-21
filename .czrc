@@ -1,5 +1,5 @@
 {
-  "path": "cz-template",
+  "path": "./index",
   "config": {
     "cz-template": {
       "questions": [
