@@ -45,6 +45,7 @@ function loadConfig (path) {
   return promise
 }
 
+// TODO: Used quesions map to formula
 function format (answers, formulaString) {
   // TODO: Use template engine
   let formula = formulaString || '${name}${scope}: ${subject}'
