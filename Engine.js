@@ -60,11 +60,9 @@ function format (answers, formulaString) {
         break
       case 'scope':
         // parentheses are only needed when a scope is present
-        if (answers.scope) {
-          var scope = answers.scope.trim()
-          scope = scope ? '(' + answers.scope.trim() + ')' : ''
-          formula = formula.replace(string, scope)
-        }
+        let scope = answers.scope
+        scope = (scope) ? `(${scope})` : ''
+        formula = formula.replace(string, scope)
         break
       case 'subject':
       case 'body':
