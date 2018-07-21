@@ -39,6 +39,7 @@ function loadConfig (path) {
     })
     .catch(e => {
       // TODO: retry homeDir('.czrc')
+      // var file = path.resolve('.czrc')
       console.error(e)
     })
   return promise
@@ -94,10 +95,12 @@ function format (answers, formulaString) {
   return head + '\n\n' + body + '\n\n' + footer
 }
 
-module.exports = () => {
+module.exports = () => {  
   return {
     prompter: function (cz, commit) {
-      var file = path.resolve('.czrc')
+      var file = path.join(process.cwd(), '.czrc')
+      console.error(file);
+      
       let config = {}
       loadConfig(file)
         .then(res => {

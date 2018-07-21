@@ -1,5 +1,5 @@
 {
-  "path": "cz-conventional-changelog",
+  "path": "cz-template",
   "config": {
     "cz-template": {
       "questions": [
