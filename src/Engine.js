@@ -1,9 +1,7 @@
 'use strict'
-const fs = require('fs')
-const path = require('path')
-
 const truncate = require('cli-truncate')
 var wrap = require('word-wrap')
+const Loader = require('./Loader.js')
 const Types = require('./Types.js')
 const Questions = require('./Questions.js')
 
@@ -13,42 +11,10 @@ var filter = function (array) {
   })
 }
 
-// TODO: Add home dir finder
-// function homeDir (subDir) {
-//   var baseDir = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
-//   return (subDir) ? path.join(baseDir, subDir) : baseDir
-// }
-
-function loadConfig (path) {
-  var promise = new Promise((resolve, reject) => {
-    fs.readFile(path, 'utf8', (err, content) => {
-      if (err) reject(err)
-      try {
-        const czrc = JSON.parse(content) || null
-        resolve(czrc)
-      } catch (e) {
-        reject(e)
-      }
-    })
-  })
-    .then(res => {
-      if (res.config && res.config['cz-template']) {
-        return res.config['cz-template']
-      }
-      return {}
-    })
-    .catch(e => {
-      // TODO: retry homeDir('.czrc')
-      // var file = path.resolve('.czrc')
-      console.error(e)
-    })
-  return promise
-}
-
 // TODO: Used quesions map to formula
 function format (answers, formulaString) {
   // TODO: Use template engine
-  let formula = formulaString || '${name}${scope}: ${subject}'
+  let formula = formulaString || '${name}${scope}: ${subject}' // eslint-disable-line no-template-curly-in-string
   let target = formula.match(/\${(.+?)}/g)
   target.map(string => {
     const key = string.match(/\${(.+?)}/)[1]
@@ -96,12 +62,11 @@ function format (answers, formulaString) {
   return head + '\n\n' + body + '\n\n' + footer
 }
 
-module.exports = () => {  
-  var file = path.join(process.cwd(), '.czrc')
+module.exports = () => {
   return {
     prompter: function (cz, commit) {
       let config = {}
-      loadConfig(file)
+      Loader()
         .then(res => {
           var types = Types(res.types)
           config = res

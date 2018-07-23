@@ -1,3 +1,3 @@
 'use strict'
-var engine = require('./Engine')
+var engine = require('./src/Engine')
 module.exports = engine()

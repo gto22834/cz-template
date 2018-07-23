@@ -73,9 +73,9 @@ $ npm i -g cz-template
 
 ## TODO
 
-- [ ] Fixed scopes options
-- [ ] Add loader to find .czrc ([reference](https://github.com/commitizen/cz-cli/blob/master/src/configLoader/loader.js#L20))
-- [ ] Pull request cz-ci to support `js` format
+- [x] Fixed scopes options
+- [x] Add loader to find .czrc ([reference](https://github.com/commitizen/cz-cli/blob/master/src/configLoader/loader.js#L20))
+- [x] Pull request cz-ci to support `js` format
 
 ## Reference:
 [cz-emoji](https://github.com/up9cloud/cz-emoji)
