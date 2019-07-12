@@ -78,5 +78,6 @@ $ npm i -g cz-template
 - [x] Pull request cz-ci to support `js` format
 
 ## Reference:
+
 [cz-emoji](https://github.com/up9cloud/cz-emoji)
-[cz-ci](https://github.com/commitizen/cz-cli)
+[cz-cli](https://github.com/commitizen/cz-cli)
