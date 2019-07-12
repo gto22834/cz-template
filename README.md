@@ -41,12 +41,21 @@ $ npm i -g cz-template
           "type": "input",
           "name": "issues",
           "message": "Add issue references (e.g. 'fix #123', 're #123'.):\n"
-        }
-      ],
-      "scopes": [
+        },
         {
-          "name": "test",
-          "value": "test"
+          "type": "list",
+          "name": "scope",
+          "message": "What is the scope of this change (e.g. component or file name)?",
+          "choices": [
+            {
+              name: `None`,
+              value: ``
+            },
+            {
+              name: `test-scope`,
+              value: `test`
+            }
+          ]
         }
       ],
       "types": [
