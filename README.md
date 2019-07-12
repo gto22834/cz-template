@@ -48,12 +48,12 @@ $ npm i -g cz-template
           "message": "What is the scope of this change (e.g. component or file name)?",
           "choices": [
             {
-              name: `None`,
-              value: ``
+              "name": "None",
+              "value": ""
             },
             {
-              name: `test-scope`,
-              value: `test`
+              "name": "test-scope",
+              "value": "test-scope"
             }
           ]
         }
