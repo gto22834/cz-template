@@ -1,5 +1,10 @@
 const fs = require('fs')
 const path = require('path')
+
+const defaultConfig = {
+  subjectMaxLength: 75,
+}
+
 /**
  * Get the entries for a directory.
  * @param {string} directory The directory to search in.
@@ -33,9 +38,9 @@ function loadConfig (file) {
   })
     .then(res => {
       if (res.config && res.config['cz-template']) {
-        return res.config['cz-template']
+        return [...defaultConfig, ...res.config['cz-template']]
       }
-      return {}
+      return defaultConfig
     })
     .catch(e => {
       // TODO: retry homeDir('.czrc')

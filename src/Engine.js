@@ -65,6 +65,9 @@ function format (answers, formulaString) {
 module.exports = () => {
   return {
     prompter: function (cz, commit) {
+      cz.prompt.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'))
+      cz.prompt.registerPrompt('maxlength-input', require('inquirer-maxlength-input-prompt'))
+  
       let config = {}
       Loader()
         .then(res => {

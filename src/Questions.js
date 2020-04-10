@@ -1,13 +1,28 @@
 'use strict'
+const fuse = require('fuse.js')
 
 module.exports = (config, types) => {
+  const fuzzy = new fuse(types, { /* eslint-disable-line new-cap */
+    shouldSort: true,
+    threshold: 0.4,
+    location: 0,
+    distance: 100,
+    maxPatternLength: 32,
+    minMatchCharLength: 1,
+    keys: ['name', 'code'],
+  })
   // Default questions
   var questions = [
     {
-      type: 'list',
+      type: 'autocomplete',
       name: 'type',
-      message: 'Select the type of change that you\'re committing:',
-      choices: types,
+      message:
+        config.questions && config.questions.type
+          ? config.questions.type
+          : "Select the type of change you're committing:",
+      source: (answersSoFar, query) => {
+        return Promise.resolve(query ? fuzzy.search(query).map(row => row.item) : types)
+      },
     },
     // {
     //   type: config.scopes ? 'list' : 'input',
@@ -16,6 +31,15 @@ module.exports = (config, types) => {
     //   // Add fuzzy by fuse.js
     //   choices: config.scopes && [{ name: '[none]', value: '' }].concat(config.scopes),
     // },
+    {
+      type: 'maxlength-input',
+      name: 'subject',
+      message:
+        config.questions && config.questions.subject
+          ? config.questions.subject
+          : 'Write a short description:',
+      maxLength: config.subjectMaxLength,
+    },
     {
       type: 'input',
       name: 'subject',
