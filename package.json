@@ -35,6 +35,9 @@
   },
   "dependencies": {
     "cli-truncate": "^1.1.0",
+    "fuse.js": "^5.1.0",
+    "inquirer-autocomplete-prompt": "^1.0.2",
+    "inquirer-maxlength-input-prompt": "^1.0.0",
     "word-wrap": "^1.2.3"
   }
 }
