@@ -37,13 +37,8 @@ module.exports = (config, types) => {
       message:
         config.questions && config.questions.subject
           ? config.questions.subject
-          : 'Write a short description:',
+          : 'Write a short, imperative tense description of the change:\n',
       maxLength: config.subjectMaxLength,
-    },
-    {
-      type: 'input',
-      name: 'subject',
-      message: 'Write a short, imperative tense description of the change:\n',
     },
     {
       type: 'input',

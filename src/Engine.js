@@ -70,9 +70,9 @@ module.exports = () => {
   
       let config = {}
       Loader()
-        .then(res => {
-          var types = Types(res.types)
-          config = res
+        .then(config => {
+          config = config || {}
+          var types = Types(config.types)
           return Questions(config, types)
         })
         .then(cz.prompt)

@@ -46,6 +46,7 @@ function loadConfig (file) {
       // TODO: retry homeDir('.czrc')
       // var file = path.resolve('.czrc')
       console.error(e)
+      return defaultConfig
     })
   return promise
 }
