@@ -34,7 +34,7 @@
     "eslint-plugin-standard": "^3.1.0"
   },
   "dependencies": {
-    "cli-truncate": "^1.1.0",
+    "cli-truncate": "^2.1.0",
     "fuse.js": "^5.1.0",
     "inquirer-autocomplete-prompt": "^1.0.2",
     "inquirer-maxlength-input-prompt": "^1.0.0",
