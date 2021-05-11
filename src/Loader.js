@@ -37,9 +37,8 @@ function loadConfig (file) {
     }
   })
     .then(res => {
-      console.error(res);
       if (res.config && res.config['cz-template']) {
-        return [...defaultConfig, ...res.config['cz-template']]
+        return Object.assign(defaultConfig, res.config['cz-template'])
       }
       return defaultConfig
     })
@@ -53,7 +52,6 @@ function loadConfig (file) {
 }
 
 module.exports = dir => {
-  console.error(dir);
   dir = dir || process.cwd()
   const dirs = getDirectoryEntries(dir)
   let fileName = ''
@@ -65,6 +63,6 @@ module.exports = dir => {
     }
   }
   let file = (fileName === '') ? path.join(__dirname, '..', '.czrc') : path.join(process.cwd(), fileName)
-  console.error(file);
-  return loadConfig(file)
+  const config = loadConfig(file)
+  return config
 }

@@ -1,11 +1,11 @@
 const types = [
-  // {
-  //   'description': 'A new feature',
-  //   'title': 'Features',
-  //   'name': 'feat',
-  //   'emoji': '🎉',
-  //   'code': ':tada:',
-  // },
+  {
+    'description': 'A new feature',
+    'title': 'Features',
+    'name': 'feat',
+    'emoji': '🎉',
+    'code': ':tada:',
+  },
   {
     'description': 'A bug fix',
     'title': 'Bug Fixes',
