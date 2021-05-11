@@ -72,8 +72,11 @@ module.exports = () => {
       Loader()
         .then(config => {
           config = config || {}
-          var types = Types(config.types)
-          return Questions(config, types)
+          const types = Types(config.types)
+          const ques = Questions(config, types)
+          console.error(types);
+          console.error(ques);
+          return ques
         })
         .then(cz.prompt)
         .then(res => format(res, config.formula))
